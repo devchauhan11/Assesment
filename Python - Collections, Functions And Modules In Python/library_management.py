@@ -3,14 +3,14 @@ from datetime import datetime
 PENALTY_PER_DAY = 10
 rentals = []
 
-def parse_date(date_str):
+def input_date(date_str):
     return datetime.strptime(date_str, "%Y-%m-%d").date()
 
 def add_rental():
     customer = input("Customer name: ")
     book = input("Book title: ")
-    rent_date = parse_date(input("Rental date (YYYY-MM-DD): "))
-    due_date = parse_date(input("Expected return date (YYYY-MM-DD): "))
+    rent_date = input_date(input("Rental date (YYYY-MM-DD): "))
+    due_date = input_date(input("Expected return date (YYYY-MM-DD): "))
 
     rental = {
         "customer": customer,
@@ -27,7 +27,7 @@ def return_book():
 
     for rental in rentals:
         if rental["book"] == book and not rental["returned"]:
-            return_date = parse_date(input("Actual return date (YYYY-MM-DD): "))
+            return_date = input_date(input("Actual return date (YYYY-MM-DD): "))
             rental["returned"] = True
 
             late_days = (return_date - rental["due_date"]).days
